@@ -1,0 +1,19 @@
+version: '2.4'
+
+services:
+
+  bridge-sim:
+    stdin_open: true
+    tty: true
+    build: 
+      context: .
+      dockerfile: ./docker/Dockerfile1
+#runtime: nvidia
+    command: bash
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ./:/code
+    environment:
+      - DISPLAY
+      - NVIDIA_VISIBLE_DEVICES=all
+      - QT_X11_NO_MITSHM=1
